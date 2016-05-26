@@ -1,0 +1,29 @@
+/* app css stylesheet */
+.main-wrapper{
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.my-sidebar {
+  float: left;
+
+  width: 20% !important;
+}
+
+.management-pane {
+  float: right;
+  width: 80%;
+}
+
+.management-title {
+  text-align: center;
+}
+
+
+.video-management-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80% !important;
+}
