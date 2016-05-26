@@ -1,39 +1,29 @@
-<h2 class="management-title">视频管理</h2>
 
-<table class="table table-hover table-bordered video-management-table">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>视频名称</th>
-        <th>视频描述</th>
-        <th>上传时间</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>d</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>d</td>
+<div ui-view="videoManagement">
+    <h2 class="management-title">视频管理</h2>
 
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>d</td>
-
-    </tr>
-
-    </tbody>
-</table>
+    <table class="table table-hover table-bordered video-management-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>视频名称</th>
+            <th>视频描述</th>
+            <th>上传时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="video in videos">
+            <th scope="row">{{$index+1}}</th>
+            <td>{{video.title}}</td>
+            <td>{{video.description}}</td>
+            <td>{{video.formatTime}}</td>
+            <td>
+                <a class="management-operation-button" ui-sref=".edit({vid:video.vid})"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                &nbsp;
+                <a class="management-operation-button"><i class="fa fa-times" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

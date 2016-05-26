@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule','managementModule','ui.router']);
+var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule','managementModule','videoManagementModule','danmuManagementModule','commentManagementModule','videoEditModule','ui.router']);
 // app.config(['$routeProvider', function ($routeProvider) {
 //
 //     $routeProvider
@@ -34,10 +34,6 @@ app.config(function($stateProvider,$urlRouterProvider) {
             controller: 'managementCtrl'
         })
         .state('management.video',{
-            // url:'/video',
-            // templateUrl:'template/videoManagement.tpl.html',
-            // controller:'videoManagementCtrl'
-
             url:'/video',
             views:{
                 'videoManagement':{
@@ -63,8 +59,17 @@ app.config(function($stateProvider,$urlRouterProvider) {
                     controller:'commentManagementCtrl'
                 }
             }
+        })
+        .state('management.video.edit',{
+            url:'/edit:vid',
+            views:{
+                'videoManagement':{
+                    templateUrl:'template/videoEdit.tpl.html',
+                    controller:'videoEditCtrl'
+                }
+            }
         });
-    // $urlRouterProvider.otherwise('liveAdmin');
+    $urlRouterProvider.otherwise('liveAdmin');
 });
 
 

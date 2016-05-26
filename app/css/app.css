@@ -27,3 +27,7 @@
   margin-right: auto;
   width: 80% !important;
 }
+
+.management-operation-button:hover{
+  cursor: pointer;
+}
