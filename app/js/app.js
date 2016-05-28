@@ -61,7 +61,7 @@ app.config(function($stateProvider,$urlRouterProvider) {
             }
         })
         .state('management.video.edit',{
-            url:'/edit:vid',
+            url: '/edit:vid',
             views:{
                 'videoManagement':{
                     templateUrl:'template/videoEdit.tpl.html',

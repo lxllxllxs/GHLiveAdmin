@@ -13,14 +13,19 @@
 }
 
 .management-pane {
-  float: right;
-  width: 80%;
+  /*clear:none;*/
 }
 
 .management-title {
   text-align: center;
 }
 
+/* Video Management */
+
+.video-batch-delete {
+  position: relative;
+  left: 900px;
+}
 
 .video-management-table {
   margin-left: auto;
@@ -30,4 +35,25 @@
 
 .management-operation-button:hover{
   cursor: pointer;
+}
+
+/* Video Edit */
+
+/*.video-edit-form {*/
+/*display: block;*/
+
+/*margin-left: 30%;*/
+/*}*/
+
+.video-cover {
+  display: block;
+
+  width: 150px;
+  height: 150px;
+
+  overflow: hidden;
+}
+
+#video-description-textarea {
+  resize: none;
 }
