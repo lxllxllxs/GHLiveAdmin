@@ -2,19 +2,17 @@
  * Created by HF Q on 2016/5/20.
  */
 var server = window.localStorage ? localStorage.getItem("serverAddress") : Cookie.read("serverAddress");
-//http://a.hiphotos.baidu.com/baike/w%3D268%3Bg%3D0/sign=2e0420d8a96eddc426e7b3fd01e0d1c0/3bf33a87e950352ae6ac2b355743fbf2b2118b39.jpg
+var clipboardData = window.clipboardData;
 angular.module('liveAdminModule',[])
 .controller('LiveAdminCtrl',['$scope','$http','$interval',function($scope,$http,$interval){
     var file;
-    $scope.selectFile = function(){
-        file=document.getElementById('file').files[0];
-    }
 
     $scope.fileSelected = function(){
         console.log("dd");
+        file=document.getElementById('file').files[0];
         if(file){
+            console.log("ee");
             if(file.type.substring(0,5)=="image"){
-                head_changed_flag=true;
                 image_file=file;
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -31,30 +29,47 @@ angular.module('liveAdminModule',[])
 
 
     $scope.confirm = function(){
+        var coverImg = file;
         var title = $scope.title;
         var description = $scope.description;
         console.log(title+" "+description);
+        if (coverImg == undefined) {
+            layer.msg("请上传封面图片！");
+            return;
+        }
+        if (!(coverImg.type.substring(0,5)=="image")) {
+            layer.msg("只能选择图片作为封面图！");
+            return;
+        }
+        if (title == "" || description=="" || title == undefined || description == undefined){
+            layer.msg("请填写直播间标题和简介！");
+            return;
+        }
         $scope.key = "key获取中...";
-        $http.post(server+'liveStart',
-            {
-                title:title,
-                description:description,
-                coverImg:file
-            },
-            {
-                headers: { 'Content-Type': 'multipart/form-data; charset=UTF-8'},
-                transformRequest:function(data){
-                    return $.param(data);
-                }
-            })
-            .success(function(response){
-                //alert(JSON.stringify(response));
+
+        var formData = new FormData();
+        formData.append("coverImg",coverImg);
+        formData.append("title",title);
+        formData.append("description",description);
+
+        $.ajax({
+            url: server+"liveStart" ,
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: 'multipart/form-data; charset=UTF-8',
+            processData: false,
+            success: function (response) {
+                console.log(response);
                 $scope.key = response.key;
-            });
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+
     }
 
-    $scope.copy = function(){
-        layer.msg("已复制至剪切板");
-    }
 
 }])

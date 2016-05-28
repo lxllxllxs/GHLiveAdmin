@@ -1,22 +1,31 @@
+<<<<<<< 13fb0947e89a257c05248a38993b894f555f210b
 
 <div class="panel panel-primary" style="margin: 50px">
+=======
+<div class="panel panel-primary" style="margin: 100px">
+>>>>>>> modify live manager
     <div class="panel-heading">
         <h3 class="panel-title">
             直播信息
         </h3>
     </div>
-    <div class="media" style="margin: 10px">
-        <a class="pull-left" href="#">
-            <img id="converImg" class="media-object"
-                 style="width: 200px;height: 200px">
 
-        </a>
-        <div class="media-body">
-            <input type="file" id="file" ng-click="selectFile()" ng-model="file" ng-change="fileSelected()">
-        </div>
-    </div>
     <div style="margin: 10px">
+
+
         <form class="bs-example bs-example-form" role="form">
+            <div class="input-group">
+                <span class="input-group-addon">直播间封面</span>
+                <div >
+                    <img id="converImg" class="media-object"
+                         style="width: 200px;height: 200px">
+                    <input type="file" id="file" ng-model="file" onchange="angular.element(this).scope().fileSelected(this)">
+                </div>
+
+
+            </div>
+            <br>
+
             <div class="input-group">
                 <span class="input-group-addon">直播间标题</span>
                 <input type="text" class="form-control" placeholder="直播间" ng-model="title">
@@ -36,17 +45,13 @@
     <br>
     <div class="input-group" style="margin: 10px">
         <span class="input-group-addon">直播key</span>
-        <input type="text" class="form-control" placeholder="key尚未获取" ng-model="key" readonly>
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ng-click="copy()">
-                复制至剪切板
-            </button>
-        </span>
+        <input id="key" type="text" class="form-control" placeholder="key尚未获取" ng-model="key" readonly>
+
     </div>
     <br>
 </div>
 
-<div class="panel panel-primary" style="margin: 50px">
+<div class="panel panel-primary" style="margin: 100px">
     <div class="panel-heading">
         <h3 class="panel-title">
             使用向导
@@ -58,6 +63,7 @@
         <li class="list-group-item">3. 填写您的直播间简介</li>
         <li class="list-group-item">4. 获取您的直播key</li>
         <li class="list-group-item">5. 将您的直播key填到XXX中
+            <br>
             <img src="http://a.hiphotos.baidu.com/baike/w%3D268%3Bg%3D0/sign=2e0420d8a96eddc426e7b3fd01e0d1c0/3bf33a87e950352ae6ac2b355743fbf2b2118b39.jpg">
         </li>
     </ul>

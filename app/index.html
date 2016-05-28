@@ -16,7 +16,8 @@
 
     <link rel="stylesheet"
           href="components/angular-fileupload/btnUpload.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="components/bootstrap/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://img3.job1001.com/js/ZeroClipboard/jquery.zclip.min.js"></script>
 
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-cookies/angular-cookies.min.js"></script>
@@ -33,6 +34,7 @@
 
 
     <script src="js/app.js"></script>
+<<<<<<< 13fb0947e89a257c05248a38993b894f555f210b
 
 
     <!-- Vendors -->
@@ -43,10 +45,13 @@
     <script type="text/javascript" src="components/bootstrap/html5shiv.js"></script>
     <script type="text/javascript" src="components/bootstrap/respond.min.js"></script>
     <![endif]-->
+=======
+>>>>>>> modify live manager
 </head>
 <body class="bootstrap-admin-with-small-navbar">
 <div class="main-wrapper" ng-app="admin-app">
 
+<<<<<<< 13fb0947e89a257c05248a38993b894f555f210b
     <nav class="navbar navbar-default navbar-fixed-top bootstrap-admin-navbar-sm" role="navigation">
         <div class="container">
             <div class="row">
@@ -99,6 +104,30 @@
         </div><!-- /.container -->
     </nav>
 
+=======
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/app/liveAdmin">光华Live管理员系统</a>
+        </div>
+        <div>
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a ng-href="#/liveAdmin">直播管理</a></li>
+                <li><a ng-href="#/management/video">点播管理</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <div></div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#/login">安全退出</a></li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!--<ng-view></ng-view>-->
+>>>>>>> modify live manager
     <div ui-view></div>
 
     <!-- footer -->
