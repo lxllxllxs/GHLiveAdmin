@@ -1,71 +1,52 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule','managementModule','videoManagementModule','danmuManagementModule','commentManagementModule','videoEditModule','ui.router']);
-// app.config(['$routeProvider', function ($routeProvider) {
-//
-//     $routeProvider
-//         .when('/app/liveAdmin', {
-//             templateUrl: "template/liveAdmin.tpl.html",
-//             controller: "LiveAdminCtrl"
-//         })
-//         .when('/app/management', {
-//             templateUrl: "template/management.tpl.html",
-//             controller: "managementCtrl"
-//         })
-//         .when('/app/management/videoManagement', {
-//             templateUrl: "template/videoManagement.tpl.html",
-//             controller: "videoManagementCtrl"
-//         })
-//         .otherwise({redirectTo: '/app/liveAdmin'});
-// }]);
-
+var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule', 'managementModule', 'managementVideoModule', 'managementCommentModule', 'managementDanmuModule', 'ui.router']);
 app.config(function($stateProvider,$urlRouterProvider) {
     $stateProvider
         .state('liveAdmin',{
             url: '/liveAdmin',
-            templateUrl: 'template/liveAdmin.tpl.html',
-            controller:'LiveAdminCtrl'
+            views: {
+                'liveAdmin': {
+                    templateUrl: 'template/liveAdmin.tpl.html',
+                    controller: 'LiveAdminCtrl'
+                }
+            }
         })
         .state('management',{
             url:'/management',
-            abstract:true,
-            templateUrl:'template/management.tpl.html',
-            controller: 'managementCtrl'
-        })
-        .state('management.video',{
-            url:'/video',
             views:{
-                'videoManagement':{
-                    templateUrl:'template/videoManagement.tpl.html',
-                    controller:'videoManagementCtrl'
+                'management': {
+                    templateUrl: 'template/management.tpl.html',
+                    controller: 'ManagementCtrl'
                 }
             }
         })
-        .state('management.danmu',{
-            url:'/danmu',
+        .state('management.video', {
+            url: '/video:vid',
             views:{
-                'danmuManagement':{
-                    templateUrl:'template/danmuManagement.tpl.html',
-                    controller:'videoManagementCtrl'
+                'management': {
+                    templateUrl: 'template/management-video.tpl.html',
+                    controller: 'ManagementVideoCtrl'
                 }
+
             }
         })
-        .state('management.comment',{
-            url:'/comment',
+        .state('management.video.comment', {
+            url: "/comment",
             views:{
                 'commentManagement':{
-                    templateUrl:'template/commentManagement.tpl.html',
-                    controller:'commentManagementCtrl'
+                    templateUrl: 'template/management-video-comment.tpl.html',
+                    controller: 'ManagementCommentCtrl'
                 }
             }
         })
-        .state('management.video.edit',{
-            url: '/edit:vid',
+        .state('management.video.danmu', {
+            url: "/danmu",
             views:{
-                'videoManagement':{
-                    templateUrl:'template/videoEdit.tpl.html',
-                    controller:'videoEditCtrl'
+                'danmuManagement': {
+                    templateUrl: 'template/management-video-danmu.tpl.html',
+                    controller: 'ManagementDanmuCtrl'
                 }
             }
         });

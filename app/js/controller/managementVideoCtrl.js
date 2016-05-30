@@ -1,8 +1,8 @@
 /**
- * Created by m on 2016/5/26.
+ * Created by m on 2016/5/30.
  */
-angular.module('videoEditModule', [])
-    .controller('videoEditCtrl', function ($scope, $state, $stateParams) {
+angular.module('managementVideoModule', [])
+    .controller('ManagementVideoCtrl', function ($scope, $state, $stateParams) {
         $scope.video = $scope.videos[$stateParams.vid];
 
         var head_changed_flag = false;

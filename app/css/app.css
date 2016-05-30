@@ -24,13 +24,7 @@
 
 .video-batch-delete {
   position: relative;
-  left: 900px;
-}
-
-.video-management-table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80% !important;
+  left: 800px;
 }
 
 .management-operation-button:hover{
