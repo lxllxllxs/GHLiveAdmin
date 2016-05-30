@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule', 'managementModule', 'managementVideoModule', 'managementCommentModule', 'managementDanmuModule', 'ui.router']);
+var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule', 'loginModule','logoutModule','managementModule', 'managementVideoModule', 'managementCommentModule', 'managementDanmuModule', 'ui.router']);
 app.config(function($stateProvider,$urlRouterProvider) {
     $stateProvider
         .state('liveAdmin',{
@@ -10,6 +10,15 @@ app.config(function($stateProvider,$urlRouterProvider) {
                 'liveAdmin': {
                     templateUrl: 'template/liveAdmin.tpl.html',
                     controller: 'LiveAdminCtrl'
+                }
+            }
+        })
+        .state('login',{
+            url: '/login',
+            views: {
+                'login': {
+                    templateUrl: 'template/login.tpl.html',
+                    controller: 'LoginCtrl'
                 }
             }
         })
@@ -50,22 +59,43 @@ app.config(function($stateProvider,$urlRouterProvider) {
                 }
             }
         });
-    $urlRouterProvider.otherwise('liveAdmin');
+    $urlRouterProvider.otherwise('login');
 });
 
 
 app.run(['$rootScope', '$http', '$cookies', function ($rootScope, $http, $cookies) {
+    console.log("reload");
     $rootScope.isLogin = false;
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
-//    var server = "http://192.168.1.122:8080/GuangHuaLive/";
-    var server = "http://localhost:8080/GuangHuaLive/";
+    //var server = "http://192.168.1.122:8080/GuangHuaLive/";
+    var server = "http://139.129.10.20:8080/GuangHuaLive/";
     if (window.localStorage) {
         console.log("localStorage ", server);
-        localStorage.clear();
         localStorage.setItem("serverAddress", server);
     } else {
         console.log("cookie");
         Cookie.write("serverAddress", server);
+    }
+
+    var isLogin = window.localStorage ? localStorage.getItem("isLogin") : Cookie.read("isLogin");
+
+    if (!(isLogin == "login")){
+        if (window.localStorage) {
+            console.log("localStorage ");
+            localStorage.setItem("isLogin", "offline");
+        } else {
+            console.log("cookie");
+            Cookie.write("isLogin", "offline");
+        }
+    } else {
+        if (window.localStorage) {
+            console.log("localStorage ", "login");
+            localStorage.setItem("isLogin", "login");
+        } else {
+            console.log("cookie");
+            Cookie.write("isLogin", "login");
+        }
+        document.getElementById('upName').innerHTML = window.localStorage ? localStorage.getItem("username") : Cookie.read("username");
     }
 
     layer.ready(function () {
@@ -93,6 +123,7 @@ app.provider('myCSRF', [function () {
                 if (allowedMethods.indexOf(config.method) === -1) {
                     // do something on success
                     config.headers[headerName] = $cookies[cookieName];
+                    console.log($cookies.csrftoken);
                 }
                 return config;
             }
@@ -101,3 +132,4 @@ app.provider('myCSRF', [function () {
 }]).config(function ($httpProvider) {
     $httpProvider.interceptors.push('myCSRF');
 });
+

@@ -9,13 +9,13 @@
     <div style="margin: 10px">
 
 
-        <form class="bs-example bs-example-form" role="form">
+        <form id="live_form" method="post" enctype="multipart/form-data" class="bs-example bs-example-form" role="form" action="http://139.129.10.20:8080/GuangHuaLive/liveStart">
             <div class="input-group">
                 <span class="input-group-addon">直播间封面</span>
                 <div>
                     <img id="converImg" class="media-object"
                          style="width: 200px;height: 200px">
-                    <input type="file" id="file" ng-model="file"
+                    <input name="coverImg" type="file" id="file" ng-model="file"
                            onchange="angular.element(this).scope().fileSelected(this)">
                 </div>
 
@@ -25,16 +25,17 @@
 
             <div class="input-group">
                 <span class="input-group-addon">直播间标题</span>
-                <input type="text" class="form-control" placeholder="直播间" ng-model="title">
+                <input type="text" class="form-control" placeholder="直播间" ng-model="title" name="title">
             </div>
             <br>
 
             <div class="input-group">
                 <span class="input-group-addon">直播间描述</span>
-                <input type="text" class="form-control" placeholder="简介" ng-model="description">
+                <input type="text" class="form-control" placeholder="简介" ng-model="description" name="description">
 
             </div>
             <br>
+            <!--<input type="submit" value="haha">-->
         </form>
     </div>
 

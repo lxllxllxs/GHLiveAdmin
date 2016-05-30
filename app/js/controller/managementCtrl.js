@@ -1,8 +1,16 @@
 /**
  * Created by m on 2016/5/25.
  */
+var server = window.localStorage ? localStorage.getItem("serverAddress") : Cookie.read("serverAddress");
+
 angular.module('managementModule',[])
-    .controller('ManagementCtrl', function ($scope, $state) {
+    .controller('ManagementCtrl', function ($scope, $state,$rootScope,$http) {
+        var isLogin = window.localStorage ? localStorage.getItem("isLogin") : Cookie.read("isLogin");
+        if (!(isLogin == "login")) {
+            layer.msg("请先登录！");
+            $state.go('login');
+        }
+
         $scope.changeState = function (path) {
             $state.go(path);
         };
@@ -17,7 +25,12 @@ angular.module('managementModule',[])
         $scope.deleteVideo = function (vid) {
 
         };
-
+        var username = window.localStorage ? localStorage.getItem("username") : Cookie.read("username");
+        $http.get(server+'videoListGetByUsername?username='+username)
+            .success(function(response){
+                console.log(response);
+                $scope.videos = response.videoList;
+            })
 
         $scope.videos = [
             {
