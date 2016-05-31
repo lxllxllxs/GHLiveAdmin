@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule', 'loginModule','logoutModule','managementModule', 'managementVideoModule', 'managementCommentModule', 'managementDanmuModule', 'ui.router']);
+var app = angular.module('admin-app', ['ngRoute', 'ngCookies', 'liveAdminModule', 'loginModule', 'logoutModule', 'managementModule', 'managementVideoModule', 'managementCommentModule', 'managementDanmuModule', 'ui.router', 'datatables']);
 app.config(function($stateProvider,$urlRouterProvider) {
     $stateProvider
         .state('liveAdmin',{

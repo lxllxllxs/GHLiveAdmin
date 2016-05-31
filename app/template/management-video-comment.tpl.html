@@ -1,1 +1,28 @@
-<h2>我是评论！</h2>
+<button type="button" class="btn btn-link video-batch-delete">批量删除</button>
+<table datatable="ng" class="table table-hover" id="example">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>评论内容</th>
+        <th>评论用户</th>
+        <th>评论时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="comment in comments">
+        <th scope="row">
+            <label><input type="checkbox" ng-value="comment.cid"></label>
+            {{$index+1}}
+        </th>
+        <td>{{comment.message}}</td>
+        <td>{{comment.username}}</td>
+        <td>{{comment.time}}</td>
+        <td><a class="management-operation-button"><i class="glyphicon glyphicon-remove"
+                                                      title="删除评论"></i></a></td>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+

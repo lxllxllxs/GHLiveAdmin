@@ -33,11 +33,9 @@
 
 /* Video Edit */
 
-/*.video-edit-form {*/
-/*display: block;*/
-
-/*margin-left: 30%;*/
-/*}*/
+.hidden {
+  display: none;
+}
 
 .video-cover {
   display: block;

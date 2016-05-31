@@ -11,10 +11,6 @@ angular.module('managementModule',[])
             $state.go('login');
         }
 
-        $scope.changeState = function (path) {
-            $state.go(path);
-        };
-
         $scope.edit = function () {
             // Here we show off go's ability to navigate to a relative state. Using '^' to go upwards
             // and '.' to go down, you can navigate to any relative state (ancestor or descendant).
@@ -30,7 +26,7 @@ angular.module('managementModule',[])
             .success(function(response){
                 console.log(response);
                 $scope.videos = response.videoList;
-            })
+            });
 
         $scope.videos = [
             {

@@ -25,8 +25,10 @@
                                         <div class="col-lg-10">
                                             <img class="video-cover" id="video-cover-img" ng-src="{{video.coverImg}}">
                                             <br/>
-                                            <button class="btn btn-default">浏览</button>
+                                            <button class="btn btn-default" onclick="uploadCover()">浏览</button>
                                             <button class="btn btn-primary">上传</button>
+                                            <input class="hidden" id="video-cover-file" type="file"
+                                                   onchange="previewVideoCover()">
                                             <!--<div class="uploader" id="uniform-fileInput">-->
                                             <!--<input class="form-control uniform_on" id="fileInput" type="file">-->
                                             <!--<span class="filename">No file selected</span>-->

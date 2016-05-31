@@ -5,17 +5,17 @@ var server = window.localStorage ? localStorage.getItem("serverAddress") : Cooki
 angular.module('loginModule', [])
     .controller('LoginCtrl', ['$scope', '$state', '$rootScope', '$http', '$cookieStore', '$cookies', function ($scope,$state, $rootScope, $http, $cookieStore, $cookies) {
         console.log(server);
-        //$http.get(server+"userStatusGet")
-	     //   .success(function(response){
-	     //       if (response.error_type == 0) {
-	     //          // $location.path('/app/main');
-	     //       } else {
-	     //
-	     //       }
-	     //   })
-	     //   .error(function(error){
-        //
-	     //   })
+        $http.get(server + "userStatusGet")
+            .success(function (response) {
+                if (response.error_type == 0) {
+                    // $location.path('/app/main');
+                } else {
+
+                }
+            })
+            .error(function (error) {
+
+            });
 	        
 
 
