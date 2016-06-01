@@ -18,8 +18,26 @@ angular.module('managementModule',[])
             $state.go('.edit');
         };
 
-        $scope.deleteVideo = function (vid) {
+        var deleteItem =  function(vid){
+            for (var i=0;i<$scope.videos.length;i++){
+                if ($scope.videos[i].vid == vid) {
+                    for (var j=i;j<$scope.videos.length-1;j++){
+                        $scope.videos[j] = $scope.videos[j+1];
+                    }
+                    $scope.videos[$scope.videos.length-1] = null;
+                    $scope.videos.length--;
+                    break;
+                }
+            }
+        }
 
+        $scope.deleteVideo = function (vid) {
+            $http.get(server+'videoDelete?vid='+vid)
+                .success(function(response){
+                    console.log(response);
+                    deleteItem(vid);
+                    layer.msg("已删除！");
+                });
         };
         var username = window.localStorage ? localStorage.getItem("username") : Cookie.read("username");
         $http.get(server+'videoListGetByUsername?username='+username)
@@ -28,34 +46,5 @@ angular.module('managementModule',[])
                 $scope.videos = response.videoList;
             });
 
-        $scope.videos = [
-            {
-                vid: "1",
-                title: "测试人员的故事1",
-                description: "lalalaaaaaaaaaaaaalaaa",
-                formatTime: "2016年5月1日",
-                coverImg: "img/test_video.png"
-            },
-            {
-                vid: "2",
-                title: "测试人员的故事2",
-                description: "lalalaaaaaaaaaaaaalaaa",
-                formatTime: "2016年5月1日",
-                coverImg: "img/test_video.png"
-            },
-            {
-                vid: "3",
-                title: "测试人员的故事3",
-                description: "lalalaaaaaaaaaaaaalaaa",
-                formatTime: "2016年5月1日",
-                coverImg: "img/test_video.png"
-            },
-            {
-                vid: "4",
-                title: "测试人员的故事4",
-                description: "lalalaaaaaaaaaaaaalaaa",
-                formatTime: "2016年5月1日",
-                coverImg: "img/test_video.png"
-            }
-        ];
+
     });

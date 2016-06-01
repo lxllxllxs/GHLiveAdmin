@@ -18,7 +18,7 @@
         <td>{{comment.username}}</td>
         <td>{{comment.time}}</td>
         <td><a class="management-operation-button"><i class="glyphicon glyphicon-remove"
-                                                      title="删除评论"></i></a></td>
+                                                      title="删除评论" ng-click="deleteComment(comment.cid)"></i></a></td>
     </tr>
     <tbody>
 

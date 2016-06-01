@@ -1,9 +1,43 @@
 /**
  * Created by m on 2016/5/30.
  */
-angular.module('managementVideoModule', [])
-    .controller('ManagementVideoCtrl', function ($scope, $state, $stateParams) {
-        $scope.video = $scope.videos[$stateParams.vid];
+angular.module('managementVideoModule', ['lr.upload'])
+    .controller('ManagementVideoCtrl', function ($scope, $state, $stateParams,$http) {
+
+        console.log("vid is "+$stateParams.vid);
+        $http.get(server + "videoGet?vid="+$stateParams.vid)
+            .success(function (response) {
+                $scope.video = response.video;
+                $scope.imgUploadData = {
+                    vid:$scope.video.vid
+                };
+            }).error(function (error) {
+            console.log(error);
+        });
+
+
+        $scope.saveChange = function(){
+            $http.get(server + "videoUpdate?vid="+$stateParams.vid+"&title="+$scope.video.title+"&description="+$scope.video.description)
+                .success(function (response) {
+                    $scope.video = response.video;
+                    layer.msg("保存成功！");
+
+                }).error(function (error) {
+                console.log(error);
+            });
+        }
+
+
+        $scope.onFileUploadSuccess = function(response){
+    	alert(JSON.stringify(response));
+            response = response.data;
+            if(response.error_type == 0){
+                $scope.video = response.video;
+            }else{
+                alert('Something wrong!');
+            }
+        }
+
     });
 
 function uploadCover() {
